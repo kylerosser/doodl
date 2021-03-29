@@ -5,8 +5,11 @@ const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
+// Serve assets in /assets, found via <url>/assets/stuff
+// This is used to serve static files such as styles, scripts and images
 app.use("/assets", express.static(join(__dirname, "..", "client", "assets")));
 
+// This where the main game is served at, when there is a request to / (no/root path), the server sends index.html 
 app.get("/", (req, res) => {
     res.sendFile(join(__dirname, "..", "client", "index.html"));
 });
