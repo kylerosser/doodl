@@ -26,6 +26,21 @@ io.on("connection", (socket) => {
 
 // If you have any other ideas or were thinking of something else please feel free to suggest?
 
+/*
+* Idea: When the client does any actions that can be listened to via javascript event listeners
+* the client will send it to the server via socket.io
+*
+* The server will validate some things such as:
+* - It's actually the client's turn and it's allowed to draw
+* - the data is indeed parsable and won't crash all the clients
+* then will send the data back to all the connected clients
+*
+* The clients will the parse the data and draw it onto the screen (including onto the drawer's own screen)
+* This will NOT work well with high latency as the drawer will get quite a lot of lag
+* 
+* Order of events transmitted will also be important
+*/
+
 // Emitted whenever a user draws something onto the canvas
 io.on("draw", (data) => {
     try {
