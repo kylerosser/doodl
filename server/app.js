@@ -19,21 +19,48 @@ io.on("connection", (socket) => {
 });
 
 // TODO: Handle incoming draw packets
-// better names apprecieated
+// TODO: Check if the client is actually allowed to draw, ie it is their turn.
+// Perhaps with middleware or something?
 
-// Potentially batch draw points so the client doesn't spam the server with packets when the mouse moves?
+// TODO: Potentially batch draw points so the client doesn't spam the server with packets when the mouse moves?
 
-// Draw? fill, erase? Not sure what else we may need.
+// If you have any other ideas or were thinking of something else please feel free to suggest?
 
 // Emitted whenever a user draws something onto the canvas
 io.on("draw", (data) => {
-    // Data should be an array of points
-    // [{x: 100, y: 1000}]
-    
-    console.log("A point was drawn");
-    // Broadcast drawn point(s)? to all clients
-    // Should it contain color data or should we leave that for another "type" of event?
+    try {
+        // Data should be an array of points?
+        // [{x: 100, y: 1000}, {x: 100, y: 1000}]
+        console.log(data);
+        console.log("A point was drawn");
+        // Broadcast drawn point(s)? to all clients
+        // Should it contain color data or should we leave that for another "type" of event?
+    } catch (e) {
+        // Hopefully this will ever happen
+        // Not gonna trust the user but uh yeah
+        // Someome might be able to attack the server by sending invalid packets
+    }
 });
+
+// Emitted whenever the client decides to choose a different pen
+// Different size pens? Fill, Eraser?
+io.on("pentype", (data) => {
+    try {
+    } catch (e) {}
+});
+
+// Emitted whenever the client presses down onto the canvas
+io.on("pendown", (data) => {
+    try {
+    } catch (e) {}
+});
+
+// Emitted whenever the client lefts the pen up
+io.on("penup", (data) => {
+    try {
+    } catch (e) {}
+});
+
 
 http.listen(3000, () => {
     console.log("Listening on port 3000");
