@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Doodl</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <!-- TODO: Add meta tags so we can have a nice embed in twitter/discord/facebook -->
 
-        <!-- Styling of the page is imported here -->
-        <link rel="stylesheet" href="/assets/styles/index.css" />
+<head>
+    <meta charset="UTF-8" />
+    <title>Doodl</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- TODO: Add meta tags so we can have a nice embed in twitter/discord/facebook -->
 
-        <!-- Socket.io is automatically served by the node module to this -->
-        <script src="/socket.io/socket.io.js"></script>
+    <!-- Styling of the page is imported here -->
+    <link rel="stylesheet" href="/assets/styles/index.css" />
 
-        <!-- Main game script-->
-        <script src="/assets/scripts/index.js"></script>
-    </head>
+    <!-- Socket.io is automatically served by the node_modules to this -->
+    <script src="/socket.io/socket.io.js"></script>
 
-    <body>
-		<!-- TODO: Add canvas element and basic styling -->
-        <h1>TODO: Add stuff</h1>
-    </body>
+    <!-- Main game script-->
+    <script src="/assets/scripts/index.js"></script>
+</head>
+
+<body>
+    <!-- TODO: Add canvas element and basic styling -->
+    <h1>Doodl</h1>
+
+    <div class="nicknameModal">
+        <form>
+            <label for="nicknameInput">Nickname: </label>
+            <input id="nicknameInput" type="text" />
+            <input type="submit" value="Join">
+        </form>
+    </div>
+
+    <div class="chatBox center">
+        <ul id="messages">
+            <li>Test</li>
+        </ul>
+    </div>
+
+    <!-- Main game canvas -->
+    <canvas id="gameCanvas" class="center" />
+</body>
+
 </html>
