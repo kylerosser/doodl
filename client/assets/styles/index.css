@@ -35,10 +35,9 @@ body {
     margin-right: 2em;
 }
 
-#messages {
+#messagesContainer {
     padding-right: 2em;
     list-style: none;
-    max-height: 50vh;
     overflow-y: scroll;
     overflow-x: hidden;
     max-width: 20vw;

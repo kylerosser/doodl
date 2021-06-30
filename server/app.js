@@ -14,8 +14,10 @@ app.get("/", (req, res) => {
     res.sendFile(join(__dirname, "..", "client", "index.html"));
 });
 
+// Terrible random id generator that isn't secure at all
+
 io.on("connection", (socket) => {
-    console.log("a user connected");
+    console.log("A client has connected");
 
     // TODO: Handle incoming draw packets
     // TODO: Check if the client is actually allowed to draw, ie it is their turn.
@@ -40,21 +42,33 @@ io.on("connection", (socket) => {
      * Order of events transmitted will also be important
      */
 
+
+    socket.on("join", ({ name }) => {
+        // TODO: Check if name is already connected to the room
+
+        io.emit('room join', { name })
+        socket.emit("joined", { id: socket.id })
+        socket.name = name
+        socket.joined = true;
+    });
+
+    // Emitted whenever a user draws something onto the canvas
+    socket.on("message", ({ content }) => {
+        if (!socket.joined) return
+        io.emit('message', { content, name: socket.name });
+    });
+
     // Emitted whenever a user draws something onto the canvas
     socket.on("draw", (data) => {
         try {
             // Check if user is the actual person that's supposed to be drawing
 
             // Data should be an array of points?
-            // [{x: 100, y: 1000}, {x: 100, y: 1000}]
             // Perharps [[x, y], [x, y]] to save network a bit, can just send raw binary data and not use socket.io, but that's harder
             // Obviously more efficient though
 
-            console.log(data);
-
-            socket.broadcast.emit('draw', { data });
+            socket.broadcast.emit('draw', data);
             // Broadcast drawn point(s)? to all clients
-            // Should it contain color data or should we leave that for another "type" of event?
         } catch (e) {
             // Hopefully this will ever happen
             // Not gonna trust the user but uh yeah
