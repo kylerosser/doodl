@@ -34,19 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
         nicknameModal.style.display = "none"
         messageInput.disabled = false;
         messageInput.placeholder = "(Press enter to focus)"
+
+        gameCanvas.addEventListener('mousedown', onMouseDown, false);
+        gameCanvas.addEventListener('mouseup', onMouseUp, false);
+        gameCanvas.addEventListener('mouseout', onMouseUp, false);
+        gameCanvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
+
+        gameCanvas.addEventListener('touchstart', onMouseDown, false);
+        gameCanvas.addEventListener('touchend', onMouseUp, false);
+        gameCanvas.addEventListener('touchcancel', onMouseUp, false);
+        gameCanvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
+
+
         joinedRoom = true;
     })
-
-    gameCanvas.addEventListener('mousedown', onMouseDown, false);
-    gameCanvas.addEventListener('mouseup', onMouseUp, false);
-    gameCanvas.addEventListener('mouseout', onMouseUp, false);
-    gameCanvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
-
-    gameCanvas.addEventListener('touchstart', onMouseDown, false);
-    gameCanvas.addEventListener('touchend', onMouseUp, false);
-    gameCanvas.addEventListener('touchcancel', onMouseUp, false);
-    gameCanvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
-
 
     // The user types a nickname then presses enter
     document.addEventListener("keydown", (evt) => {
