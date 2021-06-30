@@ -61,13 +61,14 @@ io.on("connection", (socket) => {
     // Emitted whenever a user draws something onto the canvas
     socket.on("draw", (data) => {
         try {
+            if (!socket.joined) return;
             // Check if user is the actual person that's supposed to be drawing
 
             // Data should be an array of points?
             // Perharps [[x, y], [x, y]] to save network a bit, can just send raw binary data and not use socket.io, but that's harder
             // Obviously more efficient though
 
-            socket.broadcast.emit('draw', data);
+            io.emit('draw', data);
             // Broadcast drawn point(s)? to all clients
         } catch (e) {
             // Hopefully this will ever happen
@@ -95,6 +96,7 @@ io.on("connection", (socket) => {
         }
     });
 });
+
 http.listen(3000, () => {
     console.log("Listening on port 3000");
 });
