@@ -27,27 +27,33 @@ io.on("connection", (socket) => {
 // If you have any other ideas or were thinking of something else please feel free to suggest?
 
 /*
-* Idea: When the client does any actions that can be listened to via javascript event listeners
-* the client will send it to the server via socket.io
-*
-* The server will validate some things such as:
-* - It's actually the client's turn and it's allowed to draw
-* - the data is indeed parsable and won't crash all the clients
-* then will send the data back to all the connected clients
-*
-* The clients will the parse the data and draw it onto the screen (including onto the drawer's own screen)
-* This will NOT work well with high latency as the drawer will get quite a lot of lag
-* 
-* Order of events transmitted will also be important
-*/
+ * Idea: When the client does any actions that can be listened to via javascript event listeners
+ * the client will send it to the server via socket.io
+ *
+ * The server will validate some things such as:
+ * - It's actually the client's turn and it's allowed to draw
+ * - the data is indeed parsable and won't crash all the clients
+ * then will send the data back to all the connected clients
+ *
+ * The clients will the parse the data and draw it onto the screen (including onto the drawer's own screen)
+ * This will NOT work well with high latency as the drawer will get quite a lot of lag
+ * 
+ * Order of events transmitted will also be important
+ */
 
 // Emitted whenever a user draws something onto the canvas
 io.on("draw", (data) => {
     try {
+        // Check if user is the actual person that's supposed to be drawing
+
         // Data should be an array of points?
         // [{x: 100, y: 1000}, {x: 100, y: 1000}]
+        // Perharps [[x, y], [x, y]] to save network a bit, can just send raw binary data and not use socket.io, but that's harder
+        // Obviously more efficient though
+
         console.log(data);
-        console.log("A point was drawn");
+
+        socket.broadcast.emit('draw', { data });
         // Broadcast drawn point(s)? to all clients
         // Should it contain color data or should we leave that for another "type" of event?
     } catch (e) {
@@ -61,21 +67,20 @@ io.on("draw", (data) => {
 // Different size pens? Fill, Eraser?
 io.on("pentype", (data) => {
     try {
-    } catch (e) { }
+
+    } catch (e) {
+
+    }
 });
 
 // Emitted whenever the client presses down onto the canvas
-io.on("pendown", (data) => {
+io.on("pencolor", (data) => {
     try {
-    } catch (e) { }
-});
 
-// Emitted whenever the client lefts the pen up
-io.on("penup", (data) => {
-    try {
-    } catch (e) { }
-});
+    } catch (e) {
 
+    }
+});
 
 http.listen(3000, () => {
     console.log("Listening on port 3000");
