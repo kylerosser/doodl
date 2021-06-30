@@ -27,6 +27,7 @@ body {
 #chatbox {
     align-self: left;
     align-content: flex-start;
+    margin-right: 3em;
 }
 
 #messages {
