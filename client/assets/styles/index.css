@@ -7,11 +7,6 @@ body {
 .nicknameModal {
     height: 3em;
     background: #282c34;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .center {
@@ -20,5 +15,20 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+#gameContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+#chatbox {
+    align-self: left;
+    align-content: flex-start;
+}
+
+#messages {
+    list-style: none;
 }

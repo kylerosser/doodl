@@ -6,14 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameCanvas = document.getElementById("gameCanvas")
     const ctx = gameCanvas.getContext("2d");
 
-
     resizeCanvas()
 
     function resizeCanvas() {
         const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
         gameCanvas.width = vw * 0.4 * 1.777
         gameCanvas.height = vw * 0.4
-
 
         ctx.beginPath();
         ctx.lineWidth = "6";

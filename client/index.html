@@ -21,7 +21,7 @@
     <!-- TODO: Add canvas element and basic styling -->
     <h1>Doodl</h1>
 
-    <div class="nicknameModal">
+    <div class="nicknameModal center">
         <form>
             <label for="nicknameInput">Nickname: </label>
             <input id="nicknameInput" type="text" />
@@ -29,14 +29,24 @@
         </form>
     </div>
 
-    <div class="chatBox center">
-        <ul id="messages">
-            <li>Test</li>
-        </ul>
+    <div class="center" id="gameContainer">
+        <div id="chatbox">
+            <div id="messages">
+                <!-- Totally don't commit this -->
+                <p>Tedfsdfasdfasdfasst</p>
+                <p>Teadsfsdddddddddddddddddsfsadf st</p>
+                <p>Test</p>
+                <p>Test</p>
+                <p>Test</p>
+            </div>
+
+            <input id="messageInput" type="text" />
+        </div>
+
+        <!-- Main game canvas -->
+        <canvas id="gameCanvas" />
     </div>
 
-    <!-- Main game canvas -->
-    <canvas id="gameCanvas" class="center" />
 </body>
 
 </html>
