@@ -61,19 +61,19 @@ io.on("draw", (data) => {
 // Different size pens? Fill, Eraser?
 io.on("pentype", (data) => {
     try {
-    } catch (e) {}
+    } catch (e) { }
 });
 
 // Emitted whenever the client presses down onto the canvas
 io.on("pendown", (data) => {
     try {
-    } catch (e) {}
+    } catch (e) { }
 });
 
 // Emitted whenever the client lefts the pen up
 io.on("penup", (data) => {
     try {
-    } catch (e) {}
+    } catch (e) { }
 });
 
 
