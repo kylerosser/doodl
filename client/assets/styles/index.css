@@ -4,9 +4,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nicknameModal {
-    height: 3em;
-    background: #282c34;
+#nicknameModal {
+    height: 10em;
+    background: #1d1f23;
+    margin-bottom: 5em;
 }
 
 .center {
@@ -27,9 +28,22 @@ body {
 #chatbox {
     align-self: left;
     align-content: flex-start;
-    margin-right: 3em;
+    margin-right: 2em;
 }
 
 #messages {
+    padding-right: 2em;
     list-style: none;
+    max-height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 20vw;
+}
+
+input[type="text"] {
+    padding: 0.5em;
+    width: 100%;
+    color: white;
+    background: #282c34;
+    border: none;
 }
